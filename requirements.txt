@@ -1,0 +1,4 @@
+Pillow
+python-dotenv
+requests
+cachetools

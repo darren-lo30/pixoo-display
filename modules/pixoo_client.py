@@ -323,10 +323,11 @@ class PixooMax(Pixoo):
                 encoded_byte = encoded_byte[:-8]
 
             # If some bits left, pack and encode
-            padding = 8 - len(encoded_byte)
-            encoded_pixels.append(encoded_byte.rjust(bitwidth, "0"))
+            if(encoded_byte.rjust(bitwidth, "0")):
+                encoded_pixels.append(encoded_byte.rjust(bitwidth, "0"))
 
             # Convert into array of 8-bit values
+            # print(encoded_pixels)
             encoded_data = [int(c, 2) for c in encoded_pixels]
             encoded_palette = []
             for r, g, b in palette:

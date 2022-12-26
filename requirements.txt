@@ -2,3 +2,5 @@ Pillow
 python-dotenv
 requests
 cachetools
+wmi
+pyspectator

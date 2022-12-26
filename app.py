@@ -36,7 +36,6 @@ if __name__ == "__main__":
       pixoo = connect()
 
     while True:  # Main loop - here you can change the drawing functions
-      print('hi')
       display_pc_stats(pixoo)
       sleep(1.0)  # 10 fps are already pretty smooth
   else:

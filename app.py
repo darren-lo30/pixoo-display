@@ -1,20 +1,15 @@
 from os import getenv
 from time import sleep
-from PIL import Image
 from dotenv import load_dotenv
 
 import modules.pixoo_client as pixc
+from modules.admin import is_admin
+
 import ctypes, sys
 
-from modules.pc_info import display_pc_stats
+from modules.pc_info import get_handle, display_pc_stats
 load_dotenv(".env")
 
-
-def is_admin():
-  try:
-    return ctypes.windll.shell32.IsUserAnAdmin()
-  except:
-    return False
 
 def connect():
   pixoo_mac = getenv("PIXOO_MAC_ADDRESS")
@@ -29,14 +24,15 @@ def connect():
     return None
 
 if __name__ == "__main__":
-
   if is_admin():
     pixoo = None
     while pixoo == None:
       pixoo = connect()
+      
+    pc_handle = get_handle()
 
     while True:  # Main loop - here you can change the drawing functions
-      display_pc_stats(pixoo)
+      display_pc_stats(pc_handle, pixoo)
       sleep(1.0)  # 10 fps are already pretty smooth
   else:
     # Re-run the program with admin rights
